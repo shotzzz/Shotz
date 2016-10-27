@@ -5,9 +5,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.TableLayout;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -26,6 +28,17 @@ public class ScrollingActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        createCheckBoxes();
+    }
+
+    private void createCheckBoxes() {
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.table_shot);
+        for (int i = 0; i < 20; i++) {
+            CheckBox cb = new CheckBox(getApplicationContext());
+            cb.setText("I'm dynamic!");
+            tableLayout.addView(cb);
+        }
     }
 
     @Override
