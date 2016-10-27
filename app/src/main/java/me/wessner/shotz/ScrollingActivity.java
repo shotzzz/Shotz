@@ -1,15 +1,13 @@
 package me.wessner.shotz;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -20,24 +18,27 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         createCheckBoxes();
     }
 
     private void createCheckBoxes() {
         TableLayout tableLayout = (TableLayout) findViewById(R.id.table_shot);
-        for (int i = 0; i < 20; i++) {
+        TableRow row = new TableRow(this);
+
+        for (int i = 0, newRowCounter = 0; i < 40; i++, newRowCounter++) {
+            if (newRowCounter == 2) {
+                tableLayout.addView(row); // add populated row
+                row = new TableRow(this); // create new row
+                newRowCounter = 0;
+            }
             CheckBox cb = new CheckBox(getApplicationContext());
             cb.setText("I'm dynamic!");
-            tableLayout.addView(cb);
+            int column = i % 2;
+            TableRow.LayoutParams params = new TableRow.LayoutParams(column);
+            cb.setLayoutParams(params);
+            // row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            row.addView(cb);
         }
     }
 

@@ -10,26 +10,9 @@
         tools:context="me.wessner.shotz.ScrollingActivity"
         tools:showIn="@layout/activity_scrolling">
 
+
     <TableLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/table_shot">
-
-        <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-        </TableRow>
-
-        <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-    </TableLayout>
+            android:id="@+id/table_shot"/>
 </android.support.v4.widget.NestedScrollView>
