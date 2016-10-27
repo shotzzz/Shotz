@@ -9,6 +9,8 @@ import android.widget.CheckBox;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import java.util.List;
+
 public class ScrollingActivity extends AppCompatActivity {
 
     @Override
@@ -25,15 +27,16 @@ public class ScrollingActivity extends AppCompatActivity {
     private void createCheckBoxes() {
         TableLayout tableLayout = (TableLayout) findViewById(R.id.table_shot);
         TableRow row = new TableRow(this);
+        List<Shot> shots = Shots.getShots();
 
-        for (int i = 0, newRowCounter = 0; i < 40; i++, newRowCounter++) {
+        for (int i = 0, newRowCounter = 0; i < shots.size(); i++, newRowCounter++) {
             if (newRowCounter == 2) {
                 tableLayout.addView(row); // add populated row
                 row = new TableRow(this); // create new row
                 newRowCounter = 0;
             }
             CheckBox cb = new CheckBox(getApplicationContext());
-            cb.setText("I'm dynamic!");
+            cb.setText(shots.get(i).getName());
             int column = i % 2;
             TableRow.LayoutParams params = new TableRow.LayoutParams(column);
             cb.setLayoutParams(params);
