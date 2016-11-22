@@ -7,6 +7,8 @@ package me.wessner.shotz;
 public class Shot {
 
     private final String name;
+    private String note;
+
 
     public Shot(String name) {
         this.name = name;
