@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CheckBox;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScrollingActivity extends AppCompatActivity {
@@ -24,24 +24,26 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
     private void createCheckBoxes() {
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.table_shot);
-        TableRow row = new TableRow(this);
+        ListView listViewRight = (ListView) findViewById(R.id.shotsListViewRight);
+        ListView listViewLeft = (ListView) findViewById(R.id.shotsListViewLeft);
         List<Shot> shots = Shots.getShots();
+        ArrayList<String> leftShots = new ArrayList<>();
+        ArrayList<String> rightShots = new ArrayList<>();
 
         for (int i = 0, newRowCounter = 0; i < shots.size(); i++, newRowCounter++) {
-            if (newRowCounter == 2) {
-                tableLayout.addView(row); // add populated row
-                row = new TableRow(this); // create new row
-                newRowCounter = 0;
+            String shot = shots.get(i).getName();
+            if (newRowCounter % 2 == 0) {
+                leftShots.add(shot);
+            } else {
+                rightShots.add(shot);
             }
-            CheckBox cb = new CheckBox(getApplicationContext());
-            cb.setText(shots.get(i).getName());
-            int column = i % 2;
-            TableRow.LayoutParams params = new TableRow.LayoutParams(column);
-            cb.setLayoutParams(params);
-            // row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            row.addView(cb);
         }
+
+        ArrayAdapter<String> shotLeftAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, leftShots);
+        ArrayAdapter<String> shotRightAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rightShots);
+
+        listViewLeft.setAdapter(shotLeftAdapter);
+        listViewRight.setAdapter(shotRightAdapter);
     }
 
     @Override
