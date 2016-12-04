@@ -12,6 +12,10 @@ public class Shot {
         this.name = name;
     }
 
+    public static Shot of(String name){
+        return new Shot(name);
+    }
+
     public String getName() {
         return name;
     }
