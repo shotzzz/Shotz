@@ -30,7 +30,7 @@ public class Shots {
             shots.add(Shot.of("BamBam"));
             shots.add(Shot.of("Bangkok"));
             shots.add(Shot.of("Bärenbrüder"));
-            shots.add(Shot.of("batistuta"));
+            shots.add(Shot.of("Batistuta"));
             shots.add(Shot.of("Beule"));
             shots.add(Shot.of("BigBen"));
             shots.add(Shot.of("Bikini"));
